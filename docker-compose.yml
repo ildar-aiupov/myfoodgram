@@ -6,9 +6,11 @@ volumes:
   media:
 
 services:
+
   db:
     image: postgres:13
-    env_file: .env
+    env_file:
+      - .env
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
@@ -19,7 +21,8 @@ services:
       
   backend:
     build: ./backend/
-    env_file: .env
+    env_file:
+      - .env
     depends_on:
       db:
         condition: service_healthy
@@ -29,13 +32,15 @@ services:
 
   frontend:
     build: ./frontend/
-    env_file: .env
+    env_file:
+      - .env
     volumes:
       - static:/static
 
   nginx:
     build: ./nginx/
-    env_file: .env
+    env_file:
+      - .env
     ports:
       - 8000:80
     volumes:
