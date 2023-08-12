@@ -49,7 +49,7 @@ sudo docker compose exec backend python manage.py createsuperuser
 
 Админ-панель: http://localhost:8000/admin/
 
-Техническая документация: http://localhost:8000/api/docs/
+Техническая документация: http://localhost:8000/docs/
 ```
 
 - Для остановки контейнеров Docker:
