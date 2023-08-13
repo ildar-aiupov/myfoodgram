@@ -152,10 +152,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if author_id:
             queryset = queryset.filter(author__id=int(author_id))
         # фильтрация по tags
-        tag_names = dict(self.request.GET).get("tags")
-        if tag_names:
-            tag_ids = Tag.objects.filter(name__in=tag_names).values("id")
-            queryset = queryset.filter(tags__in=tag_ids)
+        tag_slugs = dict(self.request.GET).get("tags")
+        if tag_slugs:
+            tag_ids = Tag.objects.filter(slug__in=tag_slugs).values("id")
+            queryset = queryset.filter(tags__in=tag_ids).distinct()
         return queryset
 
     def get_permissions(self):
